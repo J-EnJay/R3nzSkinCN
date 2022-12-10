@@ -1,4 +1,4 @@
-#pragma once
+﻿#pragma once
 
 #include <cstdint>
 #include <map>
@@ -6,7 +6,7 @@
 #include <vector>
 
 #include "fnv_hash.hpp"
- 
+
 class SkinDatabase {
 public:
 	class skin_info {
@@ -35,7 +35,7 @@ public:
 
 	std::map<std::uint32_t, std::vector<skin_info>> champions_skins;
 	std::vector<std::pair<std::uint32_t, const char*>> wards_skins;
-	
+
 	std::vector<const char*> minions_skins{
 		"Minion", "Summer Minion",
 		"Project Minion", "Snowdown Minion",
@@ -58,32 +58,32 @@ public:
 
 	std::vector<jungle_mob_skin_info> jungle_mobs_skins{
 		{
-			"Baron",
+			"纳什男爵",
 			{ FNV("SRU_Baron") },
 			{ "Baron", "Snowdown Baron", "Championship Baron", "Lunar Revel Baron", "MSI Baron", "Odyssey Baron", "Championship Birthday Baron", "Ruined King Baron" }
 		},
 		{
-			"Blue",
+			"苍蓝雕纹魔像",
 			{ FNV("SRU_Blue") },
 			{ "Blue", "Dark Blue", "Pool Party Blue", "Ruined King Blue" }
 		},
 		{
-			"Red",
+			"绯红印记树怪",
 			{ FNV("SRU_Red") },
 			{ "Red", "Pool Party Red", "Ruined King Red" }
 		},
 		{
-			"Scuttle",
+			"峡谷迅捷蟹",
 			{ FNV("Sru_Crab") },
 			{ "Scuttle", "Halloween Light Scuttle", "Halloween Dark Scuttle", "Ruined King Scuttle" }
 		},
 		{
-			"Krug",
+			"石甲虫",
 			{ FNV("SRU_Krug"), FNV("SRU_KrugMini"), FNV("SRU_KrugMiniMini") },
 			{ "Krug", "Dark Krug" }
 		},
 		{
-			"Razorbeak",
+			"深红锋喙鸟",
 			{ FNV("SRU_Razorbeak"), FNV("SRU_RazorbeakMini") },
 			{ "Razorbeak", "Chicken Razorbeak" }
 		}
