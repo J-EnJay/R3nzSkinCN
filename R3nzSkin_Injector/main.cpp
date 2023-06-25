@@ -22,7 +22,7 @@ void auto_update()
 
 	try
 	{
-		std::string json = msclr::interop::marshal_as<std::string>(client->DownloadString(L"https://api.github.com/repos/R3nzTheCodeGOD/R3nzSkin/releases/latest"));
+		std::string json = msclr::interop::marshal_as<std::string>(client->DownloadString(L"https://api.github.com/repos/J-EnJay/R3nzSkinCN/releases/latest"));
 		std::regex tagnameRegex("\"tag_name\"\\s*:\\s*\"([^\"]+)");
 		std::regex urlRegex("\"browser_download_url\"\\s*:\\s*\"([^\"]+)");
 		std::regex dateRegex("\"created_at\"\\s*:\\s*\"([^\"]+)");
@@ -37,7 +37,7 @@ void auto_update()
 				auto date_of_current_release = System::IO::File::GetLastWriteTime(L"R3nzSkin.dll").ToString(L"dd.MM.yyyy");
 				if (date_of_current_release != date_of_new_release)
 				{
-					auto result = LI_FN(MessageBoxW)(nullptr, L"New version is available on GitHub\nWould you like to download it now?", L"R3nzSkin", MB_YESNO | MB_ICONINFORMATION);
+					auto result = LI_FN(MessageBoxW)(nullptr, L"检测到汉化版新版本，是否更新？", L"R3nzSkinCN", MB_YESNO | MB_ICONINFORMATION);
 					if (result == IDYES)
 					{
 						if (std::regex_search(json, urlMatch, urlRegex))
@@ -62,16 +62,16 @@ int main([[maybe_unused]] array<String^>^ args)
 	auto_update();
 	std::srand(static_cast<unsigned int>(std::time(nullptr)));
 	Injector::renameExe();
-	
+
 	Application::EnableVisualStyles();
 	Application::SetCompatibleTextRenderingDefault(false);
 	R3nzSkinInjector::R3nzUI form;
 
 	auto thread{ std::thread(Injector::run) };
-	auto screenThread{ gcnew Thread(gcnew ThreadStart(%form, &R3nzSkinInjector::R3nzUI::updateScreen)) };
+	auto screenThread{ gcnew Thread(gcnew ThreadStart(% form, &R3nzSkinInjector::R3nzUI::updateScreen)) };
 	screenThread->Start();
 
-	Application::Run(%form);
+	Application::Run(% form);
 
 	thread.detach();
 	screenThread->Abort();

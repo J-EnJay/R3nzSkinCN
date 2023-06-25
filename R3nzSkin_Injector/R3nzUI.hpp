@@ -60,7 +60,7 @@ namespace R3nzSkinInjector {
 			if (!Directory::Exists(settingsFolder)) {
 				Directory::CreateDirectory(settingsFolder);
 			}
-			
+
 			File::WriteAllText(settingsFilePath, System::Convert::ToString(this->toolstripmenuItem2->Checked));
 		}
 		void loadSettings() {
@@ -276,8 +276,8 @@ namespace R3nzSkinInjector {
 			   //
 			   // menuStrip
 			   //
-			   this->toolstripmenuItem->Text = L"Preferences";
-			   this->toolstripmenuItem2->Text = L"Hide to tray";
+			   this->toolstripmenuItem->Text = L"选项";
+			   this->toolstripmenuItem2->Text = L"隐藏到托盘";
 			   this->toolstripmenuItem2->Click += gcnew System::EventHandler(this, &R3nzUI::toolstripmenuItem2_OnClick);
 			   this->toolstripmenuItem->DropDownItems->Add(this->toolstripmenuItem2);
 			   this->menuStrip->Items->Add(this->toolstripmenuItem);
@@ -338,7 +338,8 @@ namespace R3nzSkinInjector {
 				this->button1->Text = L"点击停止";
 				this->label1->Text = L"运行中";
 				this->menuItem2->Text = L"点击停止";
-			} else {
+			}
+			else {
 				this->button1->BackColor = System::Drawing::Color::FromArgb(255, 245, 8, 83);
 				this->label1->ForeColor = System::Drawing::Color::FromArgb(255, 245, 8, 83);
 				this->button1->Text = L"点击启动";
@@ -354,9 +355,9 @@ namespace R3nzSkinInjector {
 	private:
 		System::Void R3nzUI_Resize(System::Object^ sender, System::EventArgs^ e)
 		{
-			if (this->WindowState == FormWindowState::Minimized) 
+			if (this->WindowState == FormWindowState::Minimized)
 			{
-				if (this->toolstripmenuItem2->Checked) 
+				if (this->toolstripmenuItem2->Checked)
 				{
 					this->Hide();
 					this->notifyIcon->Visible = true;
