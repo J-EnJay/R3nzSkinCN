@@ -1,4 +1,4 @@
-#include <Windows.h>
+﻿#include <Windows.h>
 #include <cstdlib>
 #include <fstream>
 #include <psapi.h>
@@ -148,7 +148,7 @@ std::string Injector::randomString(std::uint32_t size) noexcept
 	std::string tmp_s;
 	tmp_s.reserve(size);
 
-	while(size--)
+	while (size--)
 		tmp_s += alphanum[std::rand() % (sizeof(alphanum) - 1)];
 
 	return tmp_s;
@@ -161,7 +161,7 @@ void Injector::autoUpdate()
 
 	try
 	{
-		std::string json = msclr::interop::marshal_as<std::string>(client->DownloadString(L"https://api.github.com/repos/R3nzTheCodeGOD/R3nzSkin/releases/latest"));
+		std::string json = msclr::interop::marshal_as<std::string>(client->DownloadString(L"https://api.github.com/repos/J-EnJay/R3nzSkinCN/releases/latest"));
 		std::regex tagnameRegex("\"tag_name\"\\s*:\\s*\"([^\"]+)");
 		std::regex urlRegex("\"browser_download_url\"\\s*:\\s*\"([^\"]+)");
 		std::regex dateRegex("\"created_at\"\\s*:\\s*\"([^\"]+)");
@@ -176,7 +176,7 @@ void Injector::autoUpdate()
 				auto date_of_current_release = System::IO::File::GetLastWriteTime(L"R3nzSkin.dll").ToString(L"dd.MM.yyyy");
 				if (date_of_current_release != date_of_new_release)
 				{
-					auto result = MessageBox::Show(L"New version is available on GitHub\nWould you like to download it now?", L"R3nzSkin", MessageBoxButtons::YesNo, MessageBoxIcon::Information);
+					auto result = MessageBox::Show(L"检测到汉化版新版本，是否更新？", L"R3nzSkinCN", MessageBoxButtons::YesNo, MessageBoxIcon::Information);
 					if (result == DialogResult::Yes)
 					{
 						if (std::regex_search(json, urlMatch, urlRegex))
@@ -218,7 +218,7 @@ void Injector::run() noexcept
 
 		R3nzSkinInjector::gameState = (league_processes.size() > 0) ? true : false;
 		R3nzSkinInjector::clientState = (league_client_processes.size() > 0) ? true : false;
-		
+
 		// antiviruses don't like endless loops, show them that this loop is a breaking point. (technically still an infinite loop :D)
 		if (league_processes.size() > 0xff)
 			break;
@@ -234,7 +234,8 @@ void Injector::run() noexcept
 						R3nzSkinInjector::cheatState = false;
 				}
 				std::this_thread::sleep_for(1s);
-			} else {
+			}
+			else {
 				R3nzSkinInjector::cheatState = true;
 			}
 		}
