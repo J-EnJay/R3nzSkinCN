@@ -1,4 +1,4 @@
-﻿#pragma once
+#pragma once
 
 #include <Windows.h>
 #include <cstdint>
@@ -38,7 +38,7 @@ public:
 	ManagerTemplate<AIMinionClient>* minionList;
 	ManagerTemplate<AITurret>* turretList;
 	ChampionManager* championManager;
-
+	
 	std::uintptr_t materialRegistry;
 	IDirect3DDevice9* d3dDevice;
 	IDXGISwapChain* swapChain;
@@ -87,7 +87,7 @@ private:
 		},
 		{
 			{
-				"48 8B 0D ? ? ? ? FF 15 ? ? ? ? E8 ? ? ? ? 48 8B"
+				"48 8B 0D ? ? ? ? FF 15 ? ? ? ? E8 ? ? ? ? 84 C0"
 			}, true, false, true, 0, &offsets::global::Riot__g_window
 		},
 		{
@@ -97,7 +97,7 @@ private:
 		},
 		{
 			{
-				"40 38 BB ? ? 00 00 0F 85 ? 00 00 00 66 C7 83 ? ? 00 00 00 04 0F 31 48 C1 E2 ? 4C 8D 83 ? ? 00 00 48 0B C2 44 8B CF 48 89 44 ? 38 8B D7 41 ? 01 00 00 00 66 0f 1F 84 00 00 00 00 00 48"
+				"40 38 BB ? ? 00 00 0F 85 ? 00 00 00 66 C7 83 ? ? 00 00 00 04 0F 31 48 C1 E2 ? 4C 8D 83 ? ? 00 00 48 0B C2 44 8B CF 48 89 44 ? 38 8B D7 41 ? 01 00 00 00 66 0f 1F 84 00"
 			}, false, true, false, 0, &offsets::AIBaseCommon::SkinId
 		},
 		{
