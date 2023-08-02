@@ -29,8 +29,7 @@
 				if (*current == '?')
 					++current;
 				bytes.push_back(-1);
-			}
-			else {
+			} else {
 				bytes.push_back(strtoul(current, &current, 16));
 			}
 		}
@@ -65,8 +64,7 @@
 					i--;
 					found = false;
 					break;
-				}
-				else {
+				} else {
 					next_check_address = reinterpret_cast<std::uint8_t*>(mbi.BaseAddress) + mbi.RegionSize;
 				}
 			}
@@ -89,8 +87,7 @@ void Memory::update(bool gameClient) noexcept
 {
 	if (gameClient) {
 		this->client = *reinterpret_cast<GameClient**>(this->base + offsets::global::GameClient);
-	}
-	else {
+	} else {
 		this->localPlayer = *reinterpret_cast<AIBaseCommon**>(this->base + offsets::global::Player);
 		this->heroList = *reinterpret_cast<ManagerTemplate<AIHero>**>(this->base + offsets::global::ManagerTemplate_AIHero_);
 		this->minionList = *reinterpret_cast<ManagerTemplate<AIMinionClient>**>(this->base + offsets::global::ManagerTemplate_AIMinionClient_);
@@ -126,7 +123,7 @@ void Memory::Search(bool gameClient)
 					auto address{ find_signature(nullptr, pattern.c_str()) };
 
 					if (!address) {
-						::MessageBoxA(nullptr, ("请检查更新!Failed to find pattern: " + pattern).c_str(), "R3nzSkin", MB_OK | MB_ICONWARNING);
+						::MessageBoxA(nullptr, ("Failed to find pattern: " + pattern).c_str(), "R3nzSkin", MB_OK | MB_ICONWARNING);
 						// cheatManager.logger->addLog("Not found: %s\n", pattern.c_str());
 						continue;
 					}
@@ -160,8 +157,7 @@ void Memory::Search(bool gameClient)
 			std::this_thread::sleep_for(2s);
 		}
 		this->update(gameClient);
-	}
-	catch (const std::exception& e) {
+	} catch (const std::exception& e) {
 		::MessageBoxA(nullptr, e.what(), "R3nzSkin", MB_OK | MB_ICONWARNING);
 	}
 }
