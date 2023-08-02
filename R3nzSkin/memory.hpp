@@ -38,7 +38,7 @@ public:
 	ManagerTemplate<AIMinionClient>* minionList;
 	ManagerTemplate<AITurret>* turretList;
 	ChampionManager* championManager;
-	
+
 	std::uintptr_t materialRegistry;
 	IDirect3DDevice9* d3dDevice;
 	IDXGISwapChain* swapChain;
@@ -87,7 +87,7 @@ private:
 		},
 		{
 			{
-				"48 8B 0D ? ? ? ? FF 15 ? ? ? ? E8 ? ? ? ? 84 C0"
+				"48 8B 0D ? ? ? ? FF 15 ? ? ? ? E8 ? ? ? ? 48 8B"
 			}, true, false, true, 0, &offsets::global::Riot__g_window
 		},
 		{
