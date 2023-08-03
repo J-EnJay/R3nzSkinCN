@@ -149,7 +149,7 @@ void Injector::autoUpdate()
 
 	try
 	{
-		std::string json = msclr::interop::marshal_as<std::string>(client->DownloadString(L"https://api.github.com/repos/R3nzTheCodeGOD/R3nzSkin/releases/latest"));
+		std::string json = msclr::interop::marshal_as<std::string>(client->DownloadString(L"https://api.github.com/repos/J-EnJay/R3nzSkinCN/releases/latest"));
 		std::regex tagnameRegex("\"tag_name\"\\s*:\\s*\"([^\"]+)");
 		std::regex urlRegex("\"browser_download_url\"\\s*:\\s*\"([^\"]+)");
 		std::regex dateRegex("\"created_at\"\\s*:\\s*\"([^\"]+)");
@@ -162,11 +162,11 @@ void Injector::autoUpdate()
 			{
 				if (!System::IO::File::Exists(L"R3nzSkin.dll"))
 				{
-					throw gcnew Exception(L"Failed to find R3nzSkin.dll in the current directory");
+					throw gcnew Exception(L"未在当前目录中找到R3nzSkin.dll");
 				}
-				auto date_of_new_release = DateTime::ParseExact(gcnew String(dateMatch[1].str().c_str()), L"yyyy-MM-ddTHH:mm:ssZ", CultureInfo::InvariantCulture).ToString(L"dd.MM.yyyy");
-				auto date_of_current_release = System::IO::File::GetLastWriteTime(L"R3nzSkin.dll").ToString(L"dd.MM.yyyy");
-				if (date_of_current_release != date_of_new_release)
+				auto date_of_github_release = DateTime::ParseExact(gcnew String(dateMatch[1].str().c_str()), L"yyyy-MM-ddTHH:mm:ssZ", CultureInfo::InvariantCulture).ToString(L"dd.MM.yyyy HH:00");
+				auto date_of_current_release = System::IO::File::GetLastWriteTime(L"R3nzSkin.dll").ToString(L"dd.MM.yyyy HH:00");
+				if (date_of_current_release != date_of_github_release)
 				{
 					auto date_of_github_release_class = DateTime::ParseExact(date_of_github_release, L"dd.MM.yyyy HH:00", CultureInfo::InvariantCulture);
 					auto date_of_current_release_class = DateTime::ParseExact(date_of_current_release, L"dd.MM.yyyy HH:00", CultureInfo::InvariantCulture);
@@ -175,7 +175,7 @@ void Injector::autoUpdate()
 						return;
 					}
 
-					auto result = MessageBox::Show(L"New version is available on GitHub\nWould you like to download it now?", L"R3nzSkin", MessageBoxButtons::YesNo, MessageBoxIcon::Information);
+					auto result = MessageBox::Show(L"检测到新版本\n现在更新吗？", L"R3nzSkin", MessageBoxButtons::YesNo, MessageBoxIcon::Information);
 					if (result == DialogResult::Yes)
 					{
 						if (std::regex_search(json, urlMatch, urlRegex))
