@@ -164,11 +164,11 @@ void Injector::autoUpdate()
 				{
 					throw gcnew Exception(L"Failed to find R3nzSkin.dll in the current directory");
 				}
-				auto date_of_github_release = DateTime::ParseExact(gcnew String(dateMatch[1].str().c_str()), L"yyyy-MM-ddTHH:mm:ssZ", CultureInfo::InvariantCulture).ToString(L"dd.MM.yyyy HH:00");
-				auto date_of_current_release = System::IO::File::GetLastWriteTime(L"R3nzSkin.dll").ToString(L"dd.MM.yyyy HH:00");
-				if (date_of_current_release != date_of_github_release)
+				auto date_of_new_release = DateTime::ParseExact(gcnew String(dateMatch[1].str().c_str()), L"yyyy-MM-ddTHH:mm:ssZ", CultureInfo::InvariantCulture).ToString(L"dd.MM.yyyy");
+				auto date_of_current_release = System::IO::File::GetLastWriteTime(L"R3nzSkin.dll").ToString(L"dd.MM.yyyy");
+				if (date_of_current_release != date_of_new_release)
 				{
-					auto date_of_github_release_class = DateTime::Parse(date_of_github_release);
+					auto date_of_github_release_class = DateTime::Parse(date_of_new_release);
 					auto date_of_current_release_class = DateTime::Parse(date_of_current_release);
 					if (date_of_current_release_class > date_of_github_release_class)
 					{
@@ -190,7 +190,7 @@ void Injector::autoUpdate()
 							System::IO::File::Move(L"R3nzSkin\\R3nzSkin_Injector.exe", String::Format(L"R3nzSkin_Injector_{0}.exe", version));
 							System::IO::File::Move(L"R3nzSkin\\R3nzSkin.dll", L"R3nzSkin.dll");
 							System::IO::Directory::Delete(L"R3nzSkin");
-							
+
 							auto process_info = gcnew System::Diagnostics::ProcessStartInfo();
 							process_info->Arguments = L"/C choice /C Y /N /D Y /T 1 & del \"" + System::Diagnostics::Process::GetCurrentProcess()->MainModule->FileName + L"\"";
 							process_info->CreateNoWindow = true;
@@ -198,7 +198,7 @@ void Injector::autoUpdate()
 							process_info->WindowStyle = System::Diagnostics::ProcessWindowStyle::Hidden;
 							System::Diagnostics::Process::Start(process_info);
 							System::Diagnostics::Process::Start(String::Format(L"R3nzSkin_Injector_{0}.exe", version));
-			
+
 							Environment::Exit(0);
 						}
 					}
@@ -222,7 +222,7 @@ void Injector::run() noexcept
 
 		R3nzSkinInjector::gameState = (league_processes.size() > 0) ? true : false;
 		R3nzSkinInjector::clientState = (league_client_processes.size() > 0) ? true : false;
-		
+
 		// antiviruses don't like endless loops, show them that this loop is a breaking point. (technically still an infinite loop :D)
 		if (league_processes.size() > 0xff)
 			break;
@@ -238,7 +238,8 @@ void Injector::run() noexcept
 						R3nzSkinInjector::cheatState = false;
 				}
 				std::this_thread::sleep_for(1s);
-			} else {
+			}
+			else {
 				R3nzSkinInjector::cheatState = true;
 			}
 		}
