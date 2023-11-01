@@ -60,31 +60,31 @@ namespace R3nzSkinInjector {
 		{
 			while (true) {
 				if (clientState) {
-					this->clientStatusLabel->Text = L"Found";
-					this->clientStatusLabel->ForeColor = Color::FromArgb(255, 46, 204, 113);
+					this->clientStatusLabel->Text = L"检测到客户端";
+					this->clientStatusLabel->ForeColor = Color::FromArgb(255, 150,95,212);
 				}
 				else {
-					this->clientStatusLabel->Text = L"Not Found";
-					this->clientStatusLabel->ForeColor = Color::FromArgb(255, 243, 156, 18);
+					this->clientStatusLabel->Text = L"未检测到客户端";
+					this->clientStatusLabel->ForeColor = Color::FromArgb(255, 150,95,212);
 				}
 
 				if (gameState) {
-					this->gameStatusLabel->Text = L"Found";
-					this->gameStatusLabel->ForeColor = Color::FromArgb(255, 252, 220, 107);
+					this->gameStatusLabel->Text = L"检测到游戏对局";
+					this->gameStatusLabel->ForeColor = Color::FromArgb(255, 150,95,212);
 					if (cheatState) {
-						this->dllStatusLabel->Text = L"Injected";
-						this->dllStatusLabel->ForeColor = Color::FromArgb(255, 252, 220, 107);
+						this->dllStatusLabel->Text = L"已注入游戏";
+						this->dllStatusLabel->ForeColor = Color::FromArgb(255, 150,95,212);
 					}
 					else {
-						this->dllStatusLabel->Text = L"Not Injected";
-						this->dllStatusLabel->ForeColor = Color::FromArgb(255, 245, 8, 83);
+						this->dllStatusLabel->Text = L"未注入";
+						this->dllStatusLabel->ForeColor = Color::FromArgb(255, 139,212,80);
 					}
 				}
 				else {
-					this->gameStatusLabel->Text = L"Not Found";
-					this->gameStatusLabel->ForeColor = Color::FromArgb(255, 245, 8, 83);
-					this->dllStatusLabel->Text = L"Not Injected";
-					this->dllStatusLabel->ForeColor = Color::FromArgb(255, 245, 8, 83);
+					this->gameStatusLabel->Text = L"未检测到对局";
+					this->gameStatusLabel->ForeColor = Color::FromArgb(255, 139,212,80);
+					this->dllStatusLabel->Text = L"未注入";
+					this->dllStatusLabel->ForeColor = Color::FromArgb(255, 139,212,80);
 				}
 				Thread::Sleep(1000);
 			}
@@ -178,7 +178,7 @@ namespace R3nzSkinInjector {
 			   // 
 			   // startButton
 			   // 
-			   this->startButton->BackColor = Color::FromArgb(245, 8, 83);
+			   this->startButton->BackColor = Color::FromArgb(139,212,80);
 			   this->startButton->Cursor = Cursors::Hand;
 			   this->startButton->FlatStyle = FlatStyle::Flat;
 			   this->startButton->Font = gcnew Drawing::Font(L"Arial", 12, FontStyle::Bold, GraphicsUnit::Point, static_cast<Byte>(162));
@@ -186,7 +186,7 @@ namespace R3nzSkinInjector {
 			   this->startButton->Name = L"startButton";
 			   this->startButton->Size = Drawing::Size(250, 50);
 			   this->startButton->TabIndex = 0;
-			   this->startButton->Text = L"Start";
+			   this->startButton->Text = L"点击启动";
 			   this->startButton->UseVisualStyleBackColor = false;
 			   this->startButton->Click += gcnew EventHandler(this, &R3nzUI::startButton_Click);
 			   // 
@@ -195,36 +195,36 @@ namespace R3nzSkinInjector {
 			   this->injectorStatusLabel->AutoSize = true;
 			   this->injectorStatusLabel->FlatStyle = FlatStyle::Flat;
 			   this->injectorStatusLabel->Font = gcnew Drawing::Font(L"Arial", 11.25F, FontStyle::Bold, GraphicsUnit::Point, static_cast<Byte>(162));
-			   this->injectorStatusLabel->ForeColor = Color::FromArgb(245, 8, 83);
+			   this->injectorStatusLabel->ForeColor = Color::FromArgb(139,212,80);
 			   this->injectorStatusLabel->Location = Point(6, 16);
 			   this->injectorStatusLabel->Name = L"injectorStatusLabel";
 			   this->injectorStatusLabel->Size = Drawing::Size(68, 18);
 			   this->injectorStatusLabel->TabIndex = 1;
-			   this->injectorStatusLabel->Text = L"Stopped";
+			   this->injectorStatusLabel->Text = L"已停止";
 			   // 
 			   // dllStatusLabel
 			   // 
 			   this->dllStatusLabel->AutoSize = true;
 			   this->dllStatusLabel->FlatStyle = FlatStyle::Flat;
 			   this->dllStatusLabel->Font = gcnew Drawing::Font(L"Arial", 11.25F, FontStyle::Bold, GraphicsUnit::Point, static_cast<Byte>(162));
-			   this->dllStatusLabel->ForeColor = Color::FromArgb(245, 8, 83);
+			   this->dllStatusLabel->ForeColor = Color::FromArgb(139,212,80);
 			   this->dllStatusLabel->Location = Point(6, 16);
 			   this->dllStatusLabel->Name = L"dllStatusLabel";
 			   this->dllStatusLabel->Size = Drawing::Size(94, 18);
 			   this->dllStatusLabel->TabIndex = 2;
-			   this->dllStatusLabel->Text = L"Not Injected";
+			   this->dllStatusLabel->Text = L"未注入";
 			   // 
 			   // gameStatusLabel
 			   // 
 			   this->gameStatusLabel->AutoSize = true;
 			   this->gameStatusLabel->FlatStyle = FlatStyle::Flat;
 			   this->gameStatusLabel->Font = gcnew Drawing::Font(L"Arial", 11.25F, FontStyle::Bold, GraphicsUnit::Point, static_cast<Byte>(162));
-			   this->gameStatusLabel->ForeColor = Color::FromArgb(245, 8, 83);
+			   this->gameStatusLabel->ForeColor = Color::FromArgb(139,212,80);
 			   this->gameStatusLabel->Location = Point(6, 16);
 			   this->gameStatusLabel->Name = L"gameStatusLabel";
 			   this->gameStatusLabel->Size = Drawing::Size(82, 18);
 			   this->gameStatusLabel->TabIndex = 3;
-			   this->gameStatusLabel->Text = L"Not Found";
+			   this->gameStatusLabel->Text = L"test1";
 			   // 
 			   // gameStatusLabel
 			   // 
@@ -237,7 +237,7 @@ namespace R3nzSkinInjector {
 			   this->injectorStatusGroupBox->Size = Drawing::Size(250, 45);
 			   this->injectorStatusGroupBox->TabIndex = 5;
 			   this->injectorStatusGroupBox->TabStop = false;
-			   this->injectorStatusGroupBox->Text = L"Injector Status";
+			   this->injectorStatusGroupBox->Text = L"注入器状态";
 			   // 
 			   // leagueClientStatusGroupBox
 			   // 
@@ -250,7 +250,7 @@ namespace R3nzSkinInjector {
 			   this->leagueClientStatusGroupBox->Size = Drawing::Size(250, 45);
 			   this->leagueClientStatusGroupBox->TabIndex = 7;
 			   this->leagueClientStatusGroupBox->TabStop = false;
-			   this->leagueClientStatusGroupBox->Text = L"LeagueClient Status";
+			   this->leagueClientStatusGroupBox->Text = L"客户端状态";
 			   // 
 		   	   // leagueGameStatusGroupBox
 		   	   // 
@@ -263,7 +263,7 @@ namespace R3nzSkinInjector {
 			   this->leagueGameStatusGroupBox->Size = Drawing::Size(250, 45);
 			   this->leagueGameStatusGroupBox->TabIndex = 8;
 			   this->leagueGameStatusGroupBox->TabStop = false;
-			   this->leagueGameStatusGroupBox->Text = L"LeagueGame Status";
+			   this->leagueGameStatusGroupBox->Text = L"对局状态";
 			   // 
 		   	   // dllStatusGroupBox
 		   	   // 
@@ -276,19 +276,19 @@ namespace R3nzSkinInjector {
 			   this->dllStatusGroupBox->Size = Drawing::Size(250, 45);
 			   this->dllStatusGroupBox->TabIndex = 9;
 			   this->dllStatusGroupBox->TabStop = false;
-			   this->dllStatusGroupBox->Text = L"R3nzSkin Status";
+			   this->dllStatusGroupBox->Text = L"注入状态";
 			   // 
 			   // clientStatusLabel
 			   // 
 			   this->clientStatusLabel->AutoSize = true;
 			   this->clientStatusLabel->FlatStyle = FlatStyle::Flat;
 			   this->clientStatusLabel->Font = gcnew Drawing::Font(L"Arial", 11.25F, FontStyle::Bold, GraphicsUnit::Point, static_cast<Byte>(162));
-			   this->clientStatusLabel->ForeColor = Color::FromArgb(245, 8, 83);
+			   this->clientStatusLabel->ForeColor = Color::FromArgb(139,212,80);
 			   this->clientStatusLabel->Location = Point(6, 16);
 			   this->clientStatusLabel->Name = L"clientStatusLabel";
 			   this->clientStatusLabel->Size = Drawing::Size(82, 18);
 			   this->clientStatusLabel->TabIndex = 0;
-			   this->clientStatusLabel->Text = L"Not Found";
+			   this->clientStatusLabel->Text = L"未找到客户端";
 			   // 
 			   // copyrightLabel
 			   // 
@@ -312,10 +312,10 @@ namespace R3nzSkinInjector {
 			   // menuItem
 			   //
 			   this->menuItem2->Index = 0;
-			   this->menuItem2->Text = L"Start";
+			   this->menuItem2->Text = L"开始";
 			   this->menuItem2->Click += gcnew EventHandler(this, &R3nzUI::menuItem2_OnClick);
 			   this->menuItem->Index = 1;
-			   this->menuItem->Text = L"Exit";
+			   this->menuItem->Text = L"退出";
 			   this->menuItem->Click += gcnew EventHandler(this, &R3nzUI::menuItem_OnClick);
 			   //
 			   // notifyIcon
@@ -328,8 +328,8 @@ namespace R3nzSkinInjector {
 			   //
 			   // menuStrip
 			   //
-			   this->toolstripmenuItem->Text = L"Preferences";
-			   this->toolstripmenuItem2->Text = L"Hide to tray";
+			   this->toolstripmenuItem->Text = L"选项";
+			   this->toolstripmenuItem2->Text = L"隐藏到托盘";
 			   this->toolstripmenuItem2->Click += gcnew EventHandler(this, &R3nzUI::toolstripmenuItem2_OnClick);
 			   this->toolstripmenuItem->DropDownItems->Add(this->toolstripmenuItem2);
 			   this->menuStrip->Items->Add(this->toolstripmenuItem);
@@ -338,7 +338,7 @@ namespace R3nzSkinInjector {
 			   // 
 			   this->AutoScaleDimensions = SizeF(7, 14);
 			   this->AutoScaleMode = Windows::Forms::AutoScaleMode::Font;
-			   this->BackColor = Color::FromArgb(32, 30, 30);
+			   this->BackColor = Color::FromArgb(29, 26, 47);
 			   this->ClientSize = Drawing::Size(273, 307);
 			   this->Controls->Add(this->menuStrip);
 		   	   this->Controls->Add(this->copyrightLabel);
@@ -388,19 +388,19 @@ namespace R3nzSkinInjector {
 			btnState = !btnState;
 			if (btnState) 
 			{
-				this->startButton->BackColor = Color::FromArgb(255, 252, 220, 107);
-				this->injectorStatusLabel->ForeColor = Color::FromArgb(255, 252, 220, 107);
-				this->startButton->Text = L"Stop";
-				this->injectorStatusLabel->Text = L"Working";
-				this->menuItem2->Text = L"Stop";
+				this->startButton->BackColor = Color::FromArgb(255, 150,95,212);
+				this->injectorStatusLabel->ForeColor = Color::FromArgb(255, 150,95,212);
+				this->startButton->Text = L"点击停止";
+				this->injectorStatusLabel->Text = L"运行中";
+				this->menuItem2->Text = L"点击停止";
 			}
 			else 
 			{
-				this->startButton->BackColor = Color::FromArgb(255, 245, 8, 83);
-				this->injectorStatusLabel->ForeColor = Color::FromArgb(255, 245, 8, 83);
-				this->startButton->Text = L"Start";
-				this->injectorStatusLabel->Text = L"Stopped";
-				this->menuItem2->Text = L"Start";
+				this->startButton->BackColor = Color::FromArgb(255, 139,212,80);
+				this->injectorStatusLabel->ForeColor = Color::FromArgb(255, 139,212,80);
+				this->startButton->Text = L"点击启动";
+				this->injectorStatusLabel->Text = L"已停止";
+				this->menuItem2->Text = L"点击启动";
 			}
 		}
 	private:

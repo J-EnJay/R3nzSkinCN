@@ -1,6 +1,6 @@
 //{{NO_DEPENDENCIES}}
-// Microsoft Visual C++ içerme dosyasý oluþturdu.
-// R3nzSkin_Injector.rc tarafýndan kullanýlmýþ
+// Microsoft Visual C++ iï¿½erme dosyasï¿½ oluï¿½turdu.
+// R3nzSkin_Injector.rc tarafï¿½ndan kullanï¿½lmï¿½ï¿½
 //
 #define IDI_ICON1                       101
 

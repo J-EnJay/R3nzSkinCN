@@ -213,9 +213,6 @@
     <ResourceCompile Include="R3nzSkin_Injector.rc" />
   </ItemGroup>
   <ItemGroup>
-    <Image Include="icon.ico" />
-  </ItemGroup>
-  <ItemGroup>
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Drawing" />
@@ -227,6 +224,9 @@
     <EmbeddedResource Include="R3nzUI.resx">
       <DependentUpon>R3nzUI.hpp</DependentUpon>
     </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <Image Include="icon.ico" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
