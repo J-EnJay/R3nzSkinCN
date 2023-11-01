@@ -127,7 +127,7 @@
       <SDLCheck>false</SDLCheck>
       <PreprocessorDefinitions>WIN32;_RIOT;NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <LanguageStandard>stdcpp17</LanguageStandard>
-      <EnableEnhancedInstructionSet>AdvancedVectorExtensions</EnableEnhancedInstructionSet>
+      <EnableEnhancedInstructionSet>StreamingSIMDExtensions2</EnableEnhancedInstructionSet>
       <PrecompiledHeaderFile>
       </PrecompiledHeaderFile>
       <FavorSizeOrSpeed>Speed</FavorSizeOrSpeed>
@@ -207,6 +207,7 @@
       <FileType>CppForm</FileType>
     </ClInclude>
     <ClInclude Include="resource.h" />
+    <ClInclude Include="xorstr.hpp" />
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="R3nzSkin_Injector.rc" />
