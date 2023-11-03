@@ -231,7 +231,7 @@ namespace R3nzSkinInjector {
 			   this->injectorStatusGroupBox->Controls->Add(this->injectorStatusLabel);
 			   this->injectorStatusGroupBox->FlatStyle = FlatStyle::Flat;
 			   this->injectorStatusGroupBox->Font = gcnew Drawing::Font(L"Arial", 6.75F, FontStyle::Bold, GraphicsUnit::Point, static_cast<Byte>(162));
-			   this->injectorStatusGroupBox->ForeColor = Color::White;
+			   this->injectorStatusGroupBox->ForeColor = Color::FromArgb(63, 109, 78);
 			   this->injectorStatusGroupBox->Location = Point(12, 79);
 			   this->injectorStatusGroupBox->Name = L"gameStatusLabel";
 			   this->injectorStatusGroupBox->Size = Drawing::Size(250, 45);
@@ -244,7 +244,7 @@ namespace R3nzSkinInjector {
 			   this->leagueClientStatusGroupBox->Controls->Add(this->clientStatusLabel);
 			   this->leagueClientStatusGroupBox->FlatStyle = FlatStyle::Flat;
 			   this->leagueClientStatusGroupBox->Font = gcnew Drawing::Font(L"Arial", 6.75F, FontStyle::Bold, GraphicsUnit::Point, static_cast<Byte>(162));
-			   this->leagueClientStatusGroupBox->ForeColor = Color::White;
+			   this->leagueClientStatusGroupBox->ForeColor = Color::FromArgb(63, 109, 78);
 			   this->leagueClientStatusGroupBox->Location = Point(12, 130);
 			   this->leagueClientStatusGroupBox->Name = L"leagueClientStatusGroupBox";
 			   this->leagueClientStatusGroupBox->Size = Drawing::Size(250, 45);
@@ -257,7 +257,7 @@ namespace R3nzSkinInjector {
 			   this->leagueGameStatusGroupBox->Controls->Add(this->gameStatusLabel);
 			   this->leagueGameStatusGroupBox->FlatStyle = FlatStyle::Flat;
 			   this->leagueGameStatusGroupBox->Font = gcnew Drawing::Font(L"Arial", 6.75F, FontStyle::Bold, GraphicsUnit::Point, static_cast<Byte>(162));
-			   this->leagueGameStatusGroupBox->ForeColor = Color::White;
+			   this->leagueGameStatusGroupBox->ForeColor = Color::FromArgb(63, 109, 78);
 			   this->leagueGameStatusGroupBox->Location = Point(12, 181);
 			   this->leagueGameStatusGroupBox->Name = L"leagueGameStatusGroupBox";
 			   this->leagueGameStatusGroupBox->Size = Drawing::Size(250, 45);
@@ -270,7 +270,7 @@ namespace R3nzSkinInjector {
 			   this->dllStatusGroupBox->Controls->Add(this->dllStatusLabel);
 			   this->dllStatusGroupBox->FlatStyle = FlatStyle::Flat;
 			   this->dllStatusGroupBox->Font = gcnew Drawing::Font(L"Arial", 6.75F, FontStyle::Bold, GraphicsUnit::Point, static_cast<Byte>(162));
-			   this->dllStatusGroupBox->ForeColor = Color::White;
+			   this->dllStatusGroupBox->ForeColor = Color::FromArgb(63, 109, 78);
 			   this->dllStatusGroupBox->Location = Point(12, 232);
 			   this->dllStatusGroupBox->Name = L"dllStatusGroupBox";
 			   this->dllStatusGroupBox->Size = Drawing::Size(250, 45);
@@ -295,13 +295,13 @@ namespace R3nzSkinInjector {
 			   this->copyrightLabel->AutoSize = true;
 			   this->copyrightLabel->Cursor = Cursors::Hand;
 			   this->copyrightLabel->LinkBehavior = LinkBehavior::NeverUnderline;
-			   this->copyrightLabel->LinkColor = Color::Silver;
+			   this->copyrightLabel->LinkColor = Color::FromArgb(63, 109, 78);
 			   this->copyrightLabel->Location = Point(20, 284);
 			   this->copyrightLabel->Name = L"copyrightLabel";
 			   this->copyrightLabel->Size = Drawing::Size(207, 14);
 			   this->copyrightLabel->TabIndex = 11;
 			   this->copyrightLabel->TabStop = true;
-			   this->copyrightLabel->Text = L"Copyright (c) 2021-2023 R3nzTheCodeGOD";
+			   this->copyrightLabel->Text = L"R3nzSkinCN";
 			   this->copyrightLabel->TextAlign = ContentAlignment::MiddleCenter;
 			   this->copyrightLabel->LinkClicked += gcnew LinkLabelLinkClickedEventHandler(this, &R3nzUI::copyrightLabel_LinkClicked);
 			   //
