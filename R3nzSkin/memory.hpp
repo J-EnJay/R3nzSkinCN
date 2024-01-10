@@ -53,7 +53,7 @@ private:
 	{
 		{
 			{
-				"48 8B 05 ? ? ? ? 8B 58 0C"
+				"48 8B 05 ? ? ? ? 4C 8B FA 83 78 0C 02"
 			}, true, false, true, 0, &offsets::global::GameClient
 		}
 	};
@@ -77,12 +77,12 @@ private:
 		},
 		{
 			{
-				"48 89 0D ? ? ? ? 48 8D 05 ? ? ? ? 33 D2"
+				"48 8B 0D ? ? ? ? E8 ? ? ? ? E8 ? ? ? ? 48 8B 0D ? ? ? ? E8 ? ? ? ? 48 8B 0D ? ? ? ? E8 ? ? ? ? 33 C9"
 			}, true, false, true, 0, &offsets::global::ManagerTemplate_AIMinionClient_
 		},
 		{
 			{
-				"48 89 0D ? ? ? ? 48 8D 05 ? ? ? ? 33 D2 48 89 01 48 8D 05 ? ? ? ?"
+				"48 8B 0D ? ? ? ? 48 8B DA 48 8B 52 30"
 			}, true, false, true, 0, &offsets::global::ManagerTemplate_AITurret_
 		},
 		{
@@ -97,7 +97,7 @@ private:
 		},
 		{
 			{
-				"40 38 BB ? ? ? ? 0F 85 ? ? ? ? 66 C7 83 ? ? ? ? ? ? 0F 31 48 C1 E2 20 4C 8D 83 ? ? ? ? 48 0B C2 44 8B CF 48 89 44 24 ? 8B D7"
+				"40 38 BB ? ? 00 00 0F 85 ? ? 00 00 66 C7 83 ? ? ? ? ? ? 0F 31 48 C1 E2 20 4C 8D 83 ? ? 00 00 48 0B C2 44 8B CF 48 89 44 24 ? 8B D7 48 63 C2"
 			}, false, true, false, 0, &offsets::AIBaseCommon::SkinId
 		},
 		{
