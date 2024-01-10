@@ -17,7 +17,7 @@ using namespace System::Net;
 int main([[maybe_unused]] array<String^>^ args)
 {
 	std::srand(static_cast<unsigned int>(std::time(nullptr)));
-	Injector::autoUpdate();
+	//Injector::autoUpdate();
 
 	Application::EnableVisualStyles();
 	Application::SetCompatibleTextRenderingDefault(false);

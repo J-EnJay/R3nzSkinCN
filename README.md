@@ -8,6 +8,10 @@
 
    # **R3nzSkin汉化版**
    # *R3nzSkin Chinese language edition*
+      ## Announcement
+   由于<a href="https://support-leagueoflegends.riotgames.com/hc/zh-tw/articles/24169857932435-Riot-Vanguard-League-of-Legends-">Riot引入Valorant的反作弊系统Vanguard到League of Legends中</a>,R3nzSkin将不再适用
+
+   感谢作者R3nzTheCodeGOD，让我见证了这发生的一切。
 
 
    <img src="https://user-images.githubusercontent.com/58574988/134170370-c827d712-fcc7-432f-b9f8-96678b0c9bf6.gif">
