@@ -58,41 +58,42 @@ public:
 
 	std::vector<jungle_mob_skin_info> jungle_mobs_skins{
 		{
-			"纳什男爵",
+			"��ʲ�о�",
 			{ FNV("SRU_Baron") },
 			{ "Baron", "Snowdown Baron", "Championship Baron", "Lunar Revel Baron", "MSI Baron", "Odyssey Baron", "Championship Birthday Baron", "Ruined King Baron" }
 		},
 		{
-			"苍蓝雕纹魔像",
+			"��������ħ��",
 			{ FNV("SRU_Blue") },
 			{ "Blue", "Dark Blue", "Pool Party Blue", "Ruined King Blue" }
 		},
 		{
-			"绯红印记树怪",
+			"糺�ӡ������",
 			{ FNV("SRU_Red") },
 			{ "Red", "Pool Party Red", "Ruined King Red" }
 		},
 		{
-			"峡谷迅捷蟹",
+			"Ͽ��Ѹ��з",
 			{ FNV("Sru_Crab") },
 			{ "Scuttle", "Halloween Light Scuttle", "Halloween Dark Scuttle", "Ruined King Scuttle" }
 		},
 		{
-			"石甲虫",
+			"ʯ�׳�",
 			{ FNV("SRU_Krug"), FNV("SRU_KrugMini"), FNV("SRU_KrugMiniMini") },
 			{ "Krug", "Dark Krug" }
 		},
 		{
-			"深红锋喙鸟",
+			"�������",
 			{ FNV("SRU_Razorbeak"), FNV("SRU_RazorbeakMini") },
 			{ "Razorbeak", "Chicken Razorbeak" }
 		}
 	};
 
 	std::vector<specialSkin> specialSkins{
-		{ FNV("Katarina"), 29, 36, { "匕首1", "匕首2", "匕首3", "匕首4", "匕首 5", "匕首6" }},
-		{ FNV("Renekton"), 26, 32, { "无头盔", "头盔", "鳍片", "终极" } },
-		{ FNV("MissFortune"), 16, 16, { "血色女王", "总攻时刻", "皇家武装", "星辰虫群" } },
-		{ FNV("Ezreal"), 5, 5, { "等级1", "等级2", "等级3" } }
+		{ FNV("Katarina"), 29, 36, { "Dagger 1", "Dagger 2", "Dagger 3", "Dagger 4", "Dagger 5", "Dagger 6" }},
+		{ FNV("Renekton"), 26, 32, { "Head off", "Head on", "Fins", "Ultimate" } },
+		{ FNV("MissFortune"), 16, 16, { "Scarlet fair", "Zero hour", "Royal arms", "Starswarm" } },
+		{ FNV("Ezreal"), 5, 5, { "Level 1", "Level 2", "Level 3" } },
+		{ FNV("Ahri"), 86, 86, { "Level 1", "Level 2", "Level 3" } }
 	};
 };
