@@ -55,7 +55,12 @@ void GUI::render() noexcept
 	const auto heroes{ cheatManager.memory->heroList };
 	static const auto my_team{ player ? player->get_team() : 100 };
 	static int gear{ player ? player->get_character_data_stack()->base_skin.gear : 0 };
-
+	
+	auto& values{ cheatManager.database->champions_skins[fnv::hash_runtime(player->get_character_data_stack()->base_skin.model.str)] };
+	if (const auto stack{ player->get_character_data_stack() }; stack->base_skin.skin != values[cheatManager.config->current_combo_skin_index - 1].skin_id) {
+		stack->base_skin.skin = values[cheatManager.config->current_combo_skin_index - 1].skin_id;
+		stack->update(true);
+	}
 	static const auto vector_getter_skin = [](void* vec, const std::int32_t idx, const char** out_text) noexcept {
 		const auto& vector{ *static_cast<std::vector<SkinDatabase::skin_info>*>(vec) };
 		if (idx < 0 || idx > static_cast<std::int32_t>(vector.size())) return false;
@@ -90,13 +95,13 @@ void GUI::render() noexcept
 		if (ImGui::BeginTabBar("TabBar", ImGuiTabBarFlags_Reorderable | ImGuiTabBarFlags_FittingPolicyScroll | ImGuiTabBarFlags_NoTooltip)) {
 			if (player) {
 				if (ImGui::BeginTabItem("Local Player")) {
-					auto& values{ cheatManager.database->champions_skins[fnv::hash_runtime(player->get_character_data_stack()->base_skin.model.str)] };
 					ImGui::Text("Player Skins Settings:");
 
 					if (ImGui::Combo("Current Skin", &cheatManager.config->current_combo_skin_index, vector_getter_skin, static_cast<void*>(&values), values.size() + 1))
-						if (cheatManager.config->current_combo_skin_index > 0)
+						if (cheatManager.config->current_combo_skin_index > 0) {
 							player->change_skin(values[cheatManager.config->current_combo_skin_index - 1].model_name, values[cheatManager.config->current_combo_skin_index - 1].skin_id);
-
+							cheatManager.config->save();
+						}
 					const auto playerHash{ fnv::hash_runtime(player->get_character_data_stack()->base_skin.model.str) };
 					if (const auto it{ std::ranges::find_if(cheatManager.database->specialSkins,
 					[&skin = player->get_character_data_stack()->base_skin.skin, &ph = playerHash](const SkinDatabase::specialSkin& x) noexcept -> bool
