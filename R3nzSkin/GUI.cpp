@@ -56,7 +56,12 @@ void GUI::render() noexcept
 	const auto heroes{ cheatManager.memory->heroList };
 	static const auto my_team{ player ? player->get_team() : 100 };
 	static int gear{ player ? player->get_character_data_stack()->base_skin.gear : 0 };
-
+	
+	auto& values{ cheatManager.database->champions_skins[fnv::hash_runtime(player->get_character_data_stack()->base_skin.model.str)] };
+	if (const auto stack{ player->get_character_data_stack() }; stack->base_skin.skin != values[cheatManager.config->current_combo_skin_index - 1].skin_id) {
+		stack->base_skin.skin = values[cheatManager.config->current_combo_skin_index - 1].skin_id;
+		stack->update(true);
+	}
 	static const auto vector_getter_skin = [](void* vec, const std::int32_t idx, const char** out_text) noexcept {
 		const auto& vector{ *static_cast<std::vector<SkinDatabase::skin_info>*>(vec) };
 		if (idx < 0 || idx > static_cast<std::int32_t>(vector.size())) return false;
@@ -97,7 +102,8 @@ void GUI::render() noexcept
 					if (ImGui::Combo("英雄皮肤", &cheatManager.config->current_combo_skin_index, vector_getter_skin, static_cast<void*>(&values), values.size() + 1))
 						if (cheatManager.config->current_combo_skin_index > 0)
 							player->change_skin(values[cheatManager.config->current_combo_skin_index - 1].model_name, values[cheatManager.config->current_combo_skin_index - 1].skin_id);
-
+							cheatManager.config->save();
+						}
 					const auto playerHash{ fnv::hash_runtime(player->get_character_data_stack()->base_skin.model.str) };
 					if (const auto it{ std::ranges::find_if(cheatManager.database->specialSkins,
 					[&skin = player->get_character_data_stack()->base_skin.skin, &ph = playerHash](const SkinDatabase::specialSkin& x) noexcept -> bool
@@ -109,14 +115,14 @@ void GUI::render() noexcept
 						const auto stack{ player->get_character_data_stack() };
 						gear = stack->base_skin.gear;
 
-						if (ImGui::Combo("皮肤形态", &gear, vector_getter_gear, static_cast<void*>(&it->gears), it->gears.size())) {
+						if (ImGui::Combo("Ƥ����̬", &gear, vector_getter_gear, static_cast<void*>(&it->gears), it->gears.size())) {
 							player->get_character_data_stack()->base_skin.gear = static_cast<std::int8_t>(gear);
 							player->get_character_data_stack()->update(true);
 						}
 						ImGui::Separator();
 					}
 
-						if (ImGui::Combo("守卫皮肤", &cheatManager.config->current_combo_ward_index, vector_getter_ward_skin, static_cast<void*>(&cheatManager.database->wards_skins), cheatManager.database->wards_skins.size() + 1))
+						if (ImGui::Combo("����Ƥ��", &cheatManager.config->current_combo_ward_index, vector_getter_ward_skin, static_cast<void*>(&cheatManager.database->wards_skins), cheatManager.database->wards_skins.size() + 1))
 							cheatManager.config->current_ward_skin_index = cheatManager.config->current_combo_ward_index == 0 ? -1 : cheatManager.database->wards_skins.at(cheatManager.config->current_combo_ward_index - 1).first;
 						footer();
 						ImGui::EndTabItem();
@@ -126,8 +132,8 @@ void GUI::render() noexcept
 			static std::int32_t temp_heroes_length = heroes->length;
 			if (temp_heroes_length > 1)
 			{
-				if (ImGui::BeginTabItem("其他玩家皮肤")) {
-					ImGui::Text("其他玩家皮肤设置:");
+				if (ImGui::BeginTabItem("�������Ƥ��")) {
+					ImGui::Text("�������Ƥ������:");
 					std::int32_t last_team{ 0 };
 					for (auto i{ 0u }; i < heroes->length; ++i) {
 						const auto hero{ heroes->list[i] };
@@ -152,9 +158,9 @@ void GUI::render() noexcept
 							if (last_team != 0)
 								ImGui::Separator();
 							if (is_enemy)
-								ImGui::Text(" 敌人");
+								ImGui::Text(" ����");
 							else
-								ImGui::Text(" 队友");
+								ImGui::Text(" ����");
 							last_team = hero_team;
 						}
 
@@ -173,17 +179,17 @@ void GUI::render() noexcept
 				}
 			}
 
-			if (ImGui::BeginTabItem("全局皮肤设置")) {
-				ImGui::Text("全局设置:");
-				if (ImGui::Combo("小兵", &cheatManager.config->current_combo_minion_index, vector_getter_default, static_cast<void*>(&cheatManager.database->minions_skins), cheatManager.database->minions_skins.size() + 1))
+			if (ImGui::BeginTabItem("ȫ��Ƥ������")) {
+				ImGui::Text("ȫ������:");
+				if (ImGui::Combo("С��", &cheatManager.config->current_combo_minion_index, vector_getter_default, static_cast<void*>(&cheatManager.database->minions_skins), cheatManager.database->minions_skins.size() + 1))
 					cheatManager.config->current_minion_skin_index = cheatManager.config->current_combo_minion_index - 1;
 				ImGui::Separator();
-				if (ImGui::Combo("蓝色方防御塔", &cheatManager.config->current_combo_order_turret_index, vector_getter_default, static_cast<void*>(&cheatManager.database->turret_skins), cheatManager.database->turret_skins.size() + 1))
+				if (ImGui::Combo("��ɫ��������", &cheatManager.config->current_combo_order_turret_index, vector_getter_default, static_cast<void*>(&cheatManager.database->turret_skins), cheatManager.database->turret_skins.size() + 1))
 					changeTurretSkin(cheatManager.config->current_combo_order_turret_index - 1, 100);
-				if (ImGui::Combo("红色方防御塔", &cheatManager.config->current_combo_chaos_turret_index, vector_getter_default, static_cast<void*>(&cheatManager.database->turret_skins), cheatManager.database->turret_skins.size() + 1))
+				if (ImGui::Combo("��ɫ��������", &cheatManager.config->current_combo_chaos_turret_index, vector_getter_default, static_cast<void*>(&cheatManager.database->turret_skins), cheatManager.database->turret_skins.size() + 1))
 					changeTurretSkin(cheatManager.config->current_combo_chaos_turret_index - 1, 200);
 				ImGui::Separator();
-				ImGui::Text("野怪皮肤设置:");
+				ImGui::Text("Ұ��Ƥ������:");
 				for (auto& [name, name_hashes, skins] : cheatManager.database->jungle_mobs_skins) {
 					std::snprintf(str_buffer, 256, "Current %s skin", name);
 					const auto [fst, snd]{ cheatManager.config->current_combo_jungle_mob_skin_index.insert({ name_hashes.front(), 0 }) };
@@ -195,29 +201,29 @@ void GUI::render() noexcept
 				ImGui::EndTabItem();
 			}
 
-			if (ImGui::BeginTabItem("日志")) {
+			if (ImGui::BeginTabItem("��־")) {
 				cheatManager.logger->draw();
 				ImGui::EndTabItem();
 			}
 
-			if (ImGui::BeginTabItem("其他")) {
-				ImGui::hotkey("菜单键", cheatManager.config->menuKey);
-				ImGui::Checkbox(cheatManager.config->heroName ? "显示英雄名称" : "显示玩家ID", &cheatManager.config->heroName);
-				ImGui::Checkbox("彩虹文本", &cheatManager.config->rainbowText);
-				ImGui::Checkbox("快捷键切换", &cheatManager.config->quickSkinChange);
-				ImGui::hoverInfo("使用快捷键切换而不用打开菜单");
+			if (ImGui::BeginTabItem("����")) {
+				ImGui::hotkey("�˵���", cheatManager.config->menuKey);
+				ImGui::Checkbox(cheatManager.config->heroName ? "��ʾӢ������" : "��ʾ���ID", &cheatManager.config->heroName);
+				ImGui::Checkbox("�ʺ��ı�", &cheatManager.config->rainbowText);
+				ImGui::Checkbox("��ݼ��л�", &cheatManager.config->quickSkinChange);
+				ImGui::hoverInfo("ʹ�ÿ�ݼ��л������ô򿪲˵�");
 
 				if (cheatManager.config->quickSkinChange) {
 					ImGui::Separator();
-					ImGui::hotkey("切换上一个皮肤", cheatManager.config->previousSkinKey);
-					ImGui::hotkey("切换下一个皮肤", cheatManager.config->nextSkinKey);
+					ImGui::hotkey("�л���һ��Ƥ��", cheatManager.config->previousSkinKey);
+					ImGui::hotkey("�л���һ��Ƥ��", cheatManager.config->nextSkinKey);
 					ImGui::Separator();
 				}
 
 				if (player)
-					ImGui::InputText("修改玩家显示ID", player->get_name());
+					ImGui::InputText("�޸������ʾID", player->get_name());
 
-				if (ImGui::Button("将其他玩家英雄设置为默认皮肤")) {
+				if (ImGui::Button("���������Ӣ������ΪĬ��Ƥ��")) {
 					for (auto& val : cheatManager.config->current_combo_enemy_skin_index | std::views::values)
 						val = 1;
 
@@ -228,9 +234,9 @@ void GUI::render() noexcept
 						if (const auto hero{ heroes->list[i] }; hero != player)
 							hero->change_skin(hero->get_character_data_stack()->base_skin.model.str, 0);
 					}
-				} ImGui::hoverInfo("还看不懂嘛，笨~");
+				} ImGui::hoverInfo("�����������~");
 
-				if (ImGui::Button("随机皮肤")) {
+				if (ImGui::Button("���Ƥ��")) {
 					for (auto i{ 0u }; i < heroes->length; ++i) {
 						const auto hero{ heroes->list[i] };
 						const auto championHash{ fnv::hash_runtime(hero->get_character_data_stack()->base_skin.model.str) };
@@ -252,16 +258,16 @@ void GUI::render() noexcept
 							hero->change_skin(skinDatabase[data - 1].model_name, skinDatabase[data - 1].skin_id);
 						}
 					}
-				} ImGui::hoverInfo("随机改变所有英雄的皮肤");
+				} ImGui::hoverInfo("����ı�����Ӣ�۵�Ƥ��");
 
-				ImGui::SliderFloat("字体大小", &cheatManager.config->fontScale, 1.0f, 2.0f, "%.3f");
+				ImGui::SliderFloat("�����С", &cheatManager.config->fontScale, 1.0f, 2.0f, "%.3f");
 				if (ImGui::GetIO().FontGlobalScale != cheatManager.config->fontScale) {
 					ImGui::GetIO().FontGlobalScale = cheatManager.config->fontScale;
-				} ImGui::hoverInfo("调整字体大小");
+				} ImGui::hoverInfo("���������С");
 
-				if (ImGui::Button("强制退出"))
+				if (ImGui::Button("ǿ���˳�"))
 					cheatManager.hooks->uninstall();
-				ImGui::hoverInfo("关闭游戏");
+				ImGui::hoverInfo("�ر���Ϸ");
 				ImGui::Text("FPS: %.0f FPS", ImGui::GetIO().Framerate);
 				footer();
 				ImGui::EndTabItem();
