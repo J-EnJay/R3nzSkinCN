@@ -18,7 +18,7 @@ int main([[maybe_unused]] array<String^>^ args)
 {
 	std::srand(static_cast<unsigned int>(std::time(nullptr)));
 	//Injector::autoUpdate();
-
+	//test
 	Application::EnableVisualStyles();
 	Application::SetCompatibleTextRenderingDefault(false);
 	R3nzSkinInjector::R3nzUI form;
